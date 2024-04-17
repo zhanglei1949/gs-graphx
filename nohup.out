@@ -1,0 +1,459 @@
+cd /data/gs/gs2/GraphScope//python && \
+python3 -m pip install --timeout=1000 --no-cache-dir "torch" "networkx<=3.0" --index-url https://download.pytorch.org/whl/cpu --user && \
+python3 -m pip install --timeout=1000 --no-cache-dir -r requirements.txt -r requirements-dev.txt --user && \
+export PATH=/usr/lib64/mpich-3.2/bin:/data/apache-maven-3.8.6/bin:/data01/jdk1.8.0_391/bin:/usr/lib64/qt-3.3/bin:/usr/lib64/mpich-3.2/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/install/java/bin:/home/tdops/anaconda3/bin:/home/tdops/anaconda3/bin/python:/home/tdops/anaconda3/bin/python:/home/tdops/qz/neo4j-community-3.5.8/bin:/home/tdops/.local/bin:/home/tdops/bin:/home/tdops/.local/bin && \
+python3 setup.py build_ext --inplace --user && \
+if [ ON  = ON ]; then \
+	python3 setup.py build_gltorch_ext --inplace --user; \
+fi && \
+python3 -m pip install --user --no-build-isolation --editable /data/gs/gs2/GraphScope//python && \
+rm -rf /data/gs/gs2/GraphScope//python/*.egg-info
+Looking in indexes: https://download.pytorch.org/whl/cpu
+Collecting torch
+  Downloading https://download.pytorch.org/whl/cpu/torch-2.2.1%2Bcpu-cp310-cp310-linux_x86_64.whl (186.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 186.8/186.8 MB 1.2 MB/s eta 0:00:00
+Collecting networkx<=3.0
+  Downloading https://download.pytorch.org/whl/networkx-3.0-py3-none-any.whl (2.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 1.3 MB/s eta 0:00:00
+Collecting jinja2
+  Downloading https://download.pytorch.org/whl/Jinja2-3.1.2-py3-none-any.whl (133 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.1/133.1 kB 305.2 kB/s eta 0:00:00
+Collecting filelock
+  Downloading https://download.pytorch.org/whl/filelock-3.9.0-py3-none-any.whl (9.7 kB)
+Collecting sympy
+  Downloading https://download.pytorch.org/whl/sympy-1.12-py3-none-any.whl (5.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.7/5.7 MB 1.2 MB/s eta 0:00:00
+Collecting typing-extensions>=4.8.0
+  Downloading https://download.pytorch.org/whl/typing_extensions-4.8.0-py3-none-any.whl (31 kB)
+Collecting fsspec
+  Downloading https://download.pytorch.org/whl/fsspec-2023.4.0-py3-none-any.whl (153 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 154.0/154.0 kB 393.0 kB/s eta 0:00:00
+Collecting MarkupSafe>=2.0
+  Downloading https://download.pytorch.org/whl/MarkupSafe-2.1.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+Collecting mpmath>=0.19
+  Downloading https://download.pytorch.org/whl/mpmath-1.3.0-py3-none-any.whl (536 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 573.5 kB/s eta 0:00:00
+Installing collected packages: mpmath, typing-extensions, sympy, networkx, MarkupSafe, fsspec, filelock, jinja2, torch
+Successfully installed MarkupSafe-2.1.3 filelock-3.9.0 fsspec-2023.4.0 jinja2-3.1.2 mpmath-1.3.0 networkx-3.0 sympy-1.12 torch-2.2.1+cpu typing-extensions-4.8.0
+Ignoring networkx: markers 'python_version < "3.8"' don't match your environment
+Ignoring pysimdjson: markers 'python_version >= "3.11"' don't match your environment
+Ignoring ujson: markers 'python_version >= "3.11"' don't match your environment
+Collecting Cython>=3.0.0b3
+  Downloading Cython-3.0.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.6/3.6 MB 207.4 kB/s eta 0:00:00
+Collecting gremlinpython==3.7.0
+  Downloading gremlinpython-3.7.0-py2.py3-none-any.whl (74 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 75.0/75.0 kB 281.9 kB/s eta 0:00:00
+Collecting grpcio>=1.49
+  Downloading grpcio-1.62.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 698.2 kB/s eta 0:00:00
+Collecting grpcio-tools>=1.49
+  Downloading grpcio_tools-1.62.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.8/2.8 MB 1.2 MB/s eta 0:00:00
+Collecting kubernetes>=24.2.0
+  Downloading kubernetes-29.0.0-py2.py3-none-any.whl (1.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 1.2 MB/s eta 0:00:00
+Collecting msgpack>=1.0.5
+  Downloading msgpack-1.0.8-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (385 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 385.1/385.1 kB 1.2 MB/s eta 0:00:00
+Collecting mypy-protobuf>=3.4.0
+  Downloading mypy_protobuf-3.5.0-py3-none-any.whl (16 kB)
+Collecting neo4j==5.10.0
+  Downloading neo4j-5.10.0.tar.gz (187 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 187.7/187.7 kB 1.3 MB/s eta 0:00:00
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting nest_asyncio
+  Downloading nest_asyncio-1.6.0-py3-none-any.whl (5.2 kB)
+Collecting networkx==2.8.0
+  Downloading networkx-2.8-py3-none-any.whl (2.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 1.2 MB/s eta 0:00:00
+Collecting numpy
+  Downloading numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.2/18.2 MB 1.2 MB/s eta 0:00:00
+Collecting orjson
+  Downloading orjson-3.9.15-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (138 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 138.5/138.5 kB 1.3 MB/s eta 0:00:00
+Collecting packaging
+  Downloading packaging-23.2-py3-none-any.whl (53 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 53.0/53.0 kB 1.4 MB/s eta 0:00:00
+Collecting pandas<=2.0.3
+  Downloading pandas-2.0.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 1.2 MB/s eta 0:00:00
+Collecting protobuf>=4
+  Downloading protobuf-4.25.3-cp37-abi3-manylinux2014_x86_64.whl (294 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 294.6/294.6 kB 1.3 MB/s eta 0:00:00
+Collecting psutil
+  Downloading psutil-5.9.8-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (288 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 288.2/288.2 kB 1.2 MB/s eta 0:00:00
+Collecting pyarrow>=10
+  Downloading pyarrow-15.0.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.4/38.4 MB 1.2 MB/s eta 0:00:00
+Collecting pysimdjson<6
+  Downloading pysimdjson-5.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 1.2 MB/s eta 0:00:00
+Collecting PyYAML
+  Downloading PyYAML-6.0.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (705 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 705.5/705.5 kB 1.2 MB/s eta 0:00:00
+Collecting rich
+  Downloading rich-13.7.1-py3-none-any.whl (240 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 240.7/240.7 kB 1.3 MB/s eta 0:00:00
+Collecting tqdm
+  Downloading tqdm-4.66.2-py3-none-any.whl (78 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.3/78.3 kB 1.3 MB/s eta 0:00:00
+Collecting click
+  Downloading click-8.1.7-py3-none-any.whl (97 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 97.9/97.9 kB 1.3 MB/s eta 0:00:00
+Collecting vineyard>=0.16.3
+  Downloading vineyard-0.21.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (890 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 890.7/890.7 kB 1.2 MB/s eta 0:00:00
+Collecting simple-parsing
+  Downloading simple_parsing-0.1.5-py3-none-any.whl (113 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 113.6/113.6 kB 1.4 MB/s eta 0:00:00
+Collecting graphscope-flex>=0.27.0
+  Downloading graphscope_flex-0.27.0-py2.py3-none-any.whl (110 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 110.0/110.0 kB 1.3 MB/s eta 0:00:00
+Collecting black>=23.3.0
+  Downloading black-24.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 1.2 MB/s eta 0:00:00
+Collecting breathe>4.30
+  Downloading breathe-4.35.0-py3-none-any.whl (92 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 93.0/93.0 kB 1.4 MB/s eta 0:00:00
+Collecting docutils==0.20.1
+  Downloading docutils-0.20.1-py3-none-any.whl (572 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 572.7/572.7 kB 1.0 MB/s eta 0:00:00
+Collecting flake8==4.0.1
+  Downloading flake8-4.0.1-py2.py3-none-any.whl (64 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 64.1/64.1 kB 1.3 MB/s eta 0:00:00
+Collecting furo
+  Downloading furo-2024.1.29-py3-none-any.whl (325 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 325.2/325.2 kB 1.2 MB/s eta 0:00:00
+Collecting isort==5.10.1
+  Downloading isort-5.10.1-py3-none-any.whl (103 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.4/103.4 kB 1.3 MB/s eta 0:00:00
+Requirement already satisfied: jinja2>=3.1.0 in /home/tdops/.local/lib/python3.10/site-packages (from -r requirements-dev.txt (line 7)) (3.1.2)
+Collecting linkify-it-py
+  Downloading linkify_it_py-2.0.3-py3-none-any.whl (19 kB)
+Collecting myst-parser>=0.13.0
+  Downloading myst_parser-2.0.0-py3-none-any.whl (77 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 77.2/77.2 kB 1.3 MB/s eta 0:00:00
+Collecting pylint
+  Downloading pylint-3.1.0-py3-none-any.whl (515 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 515.6/515.6 kB 1.2 MB/s eta 0:00:00
+Collecting pytest
+  Downloading pytest-8.0.2-py3-none-any.whl (333 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 334.0/334.0 kB 1.2 MB/s eta 0:00:00
+Collecting pytest-cov
+  Downloading pytest_cov-4.1.0-py3-none-any.whl (21 kB)
+Collecting pytest-xdist
+  Downloading pytest_xdist-3.5.0-py3-none-any.whl (42 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.0/42.0 kB 1.5 MB/s eta 0:00:00
+Collecting pytest-timeout
+  Downloading pytest_timeout-2.2.0-py3-none-any.whl (13 kB)
+Collecting Pygments>=2.4.1
+  Downloading pygments-2.17.2-py3-none-any.whl (1.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 1.2 MB/s eta 0:00:00
+Collecting sphinx>=7.1.2
+  Downloading sphinx-7.2.6-py3-none-any.whl (3.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 1.2 MB/s eta 0:00:00
+Collecting sphinx-copybutton
+  Downloading sphinx_copybutton-0.5.2-py3-none-any.whl (13 kB)
+Collecting sphinx-panels
+  Downloading sphinx_panels-0.6.0-py3-none-any.whl (87 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.7/87.7 kB 1.3 MB/s eta 0:00:00
+Collecting sphinxemoji
+  Downloading sphinxemoji-0.3.1-py3-none-any.whl (46 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.1/46.1 kB 1.4 MB/s eta 0:00:00
+Collecting sphinxext-opengraph
+  Downloading sphinxext_opengraph-0.9.1-py3-none-any.whl (1.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 1.2 MB/s eta 0:00:00
+Collecting tomli
+  Downloading tomli-2.0.1-py3-none-any.whl (12 kB)
+Collecting wheel
+  Downloading wheel-0.42.0-py3-none-any.whl (65 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 65.4/65.4 kB 1.4 MB/s eta 0:00:00
+Collecting setuptools==65.7.0
+  Downloading setuptools-65.7.0-py3-none-any.whl (1.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 1.2 MB/s eta 0:00:00
+Collecting six<2.0.0,>=1.10.0
+  Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+Collecting aenum<4.0.0,>=1.4.5
+  Downloading aenum-3.1.15-py3-none-any.whl (137 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.6/137.6 kB 1.3 MB/s eta 0:00:00
+Collecting isodate<1.0.0,>=0.6.0
+  Downloading isodate-0.6.1-py2.py3-none-any.whl (41 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.7/41.7 kB 1.5 MB/s eta 0:00:00
+Collecting aiohttp<4.0.0,>=3.8.0
+  Downloading aiohttp-3.9.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 1.2 MB/s eta 0:00:00
+Collecting pytz
+  Downloading pytz-2024.1-py2.py3-none-any.whl (505 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 505.5/505.5 kB 1.2 MB/s eta 0:00:00
+Collecting pyflakes<2.5.0,>=2.4.0
+  Downloading pyflakes-2.4.0-py2.py3-none-any.whl (69 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.7/69.7 kB 1.4 MB/s eta 0:00:00
+Collecting pycodestyle<2.9.0,>=2.8.0
+  Downloading pycodestyle-2.8.0-py2.py3-none-any.whl (42 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.1/42.1 kB 1.5 MB/s eta 0:00:00
+Collecting mccabe<0.7.0,>=0.6.0
+  Downloading mccabe-0.6.1-py2.py3-none-any.whl (8.6 kB)
+Collecting google-auth>=1.0.1
+  Downloading google_auth-2.28.1-py2.py3-none-any.whl (186 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 186.9/186.9 kB 1.2 MB/s eta 0:00:00
+Collecting oauthlib>=3.2.2
+  Downloading oauthlib-3.2.2-py3-none-any.whl (151 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 151.7/151.7 kB 1.3 MB/s eta 0:00:00
+Collecting urllib3>=1.24.2
+  Downloading urllib3-2.2.1-py3-none-any.whl (121 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 121.1/121.1 kB 1.3 MB/s eta 0:00:00
+Collecting python-dateutil>=2.5.3
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 1.2 MB/s eta 0:00:00
+Collecting requests-oauthlib
+  Downloading requests_oauthlib-1.3.1-py2.py3-none-any.whl (23 kB)
+Collecting certifi>=14.05.14
+  Downloading certifi-2024.2.2-py3-none-any.whl (163 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 163.8/163.8 kB 1.2 MB/s eta 0:00:00
+Collecting websocket-client!=0.40.0,!=0.41.*,!=0.42.*,>=0.32.0
+  Downloading websocket_client-1.7.0-py3-none-any.whl (58 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.5/58.5 kB 1.4 MB/s eta 0:00:00
+Collecting requests
+  Downloading requests-2.31.0-py3-none-any.whl (62 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.6/62.6 kB 1.3 MB/s eta 0:00:00
+Collecting types-protobuf>=4.23.0.2
+  Downloading types_protobuf-4.24.0.20240302-py3-none-any.whl (61 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.9/61.9 kB 1.4 MB/s eta 0:00:00
+Collecting tzdata>=2022.1
+  Downloading tzdata-2024.1-py2.py3-none-any.whl (345 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 345.4/345.4 kB 1.2 MB/s eta 0:00:00
+Collecting markdown-it-py>=2.2.0
+  Downloading markdown_it_py-3.0.0-py3-none-any.whl (87 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.5/87.5 kB 1.4 MB/s eta 0:00:00
+Collecting etcd-distro
+  Downloading etcd_distro-3.5.1-py2.py3-none-manylinux1_x86_64.whl (19.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 19.3/19.3 MB 1.2 MB/s eta 0:00:00
+Collecting argcomplete
+  Downloading argcomplete-3.2.2-py3-none-any.whl (42 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.3/42.3 kB 1.7 MB/s eta 0:00:00
+Collecting treelib
+  Downloading treelib-1.7.0-py3-none-any.whl (18 kB)
+Collecting vineyard-bdist==0.21.3
+  Downloading vineyard_bdist-0.21.3-py3-none-manylinux2014_x86_64.whl (23.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 23.1/23.1 MB 1.2 MB/s eta 0:00:00
+Collecting makefun
+  Downloading makefun-1.15.2-py2.py3-none-any.whl (22 kB)
+Collecting sortedcontainers
+  Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+Collecting lazy-import
+  Downloading lazy_import-0.2.2.tar.gz (15 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting docstring-parser~=0.15
+  Downloading docstring_parser-0.15-py3-none-any.whl (36 kB)
+Requirement already satisfied: typing-extensions>=4.5.0 in /home/tdops/.local/lib/python3.10/site-packages (from simple-parsing->-r requirements.txt (line 27)) (4.8.0)
+Collecting urllib3>=1.24.2
+  Downloading urllib3-2.0.7-py3-none-any.whl (124 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 124.2/124.2 kB 1.3 MB/s eta 0:00:00
+Collecting pydantic>=2
+  Downloading pydantic-2.6.3-py3-none-any.whl (395 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 395.2/395.2 kB 1.2 MB/s eta 0:00:00
+Collecting platformdirs>=2
+  Downloading platformdirs-4.2.0-py3-none-any.whl (17 kB)
+Collecting mypy-extensions>=0.4.3
+  Downloading mypy_extensions-1.0.0-py3-none-any.whl (4.7 kB)
+Collecting pathspec>=0.9.0
+  Downloading pathspec-0.12.1-py3-none-any.whl (31 kB)
+Collecting sphinx-basic-ng
+  Downloading sphinx_basic_ng-1.0.0b2-py3-none-any.whl (22 kB)
+Collecting beautifulsoup4
+  Downloading beautifulsoup4-4.12.3-py3-none-any.whl (147 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 147.9/147.9 kB 1.2 MB/s eta 0:00:00
+Requirement already satisfied: MarkupSafe>=2.0 in /home/tdops/.local/lib/python3.10/site-packages (from jinja2>=3.1.0->-r requirements-dev.txt (line 7)) (2.1.3)
+Collecting uc-micro-py
+  Downloading uc_micro_py-1.0.3-py3-none-any.whl (6.2 kB)
+Collecting mdit-py-plugins~=0.4
+  Downloading mdit_py_plugins-0.4.0-py3-none-any.whl (54 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 54.1/54.1 kB 1.4 MB/s eta 0:00:00
+Collecting tomlkit>=0.10.1
+  Downloading tomlkit-0.12.4-py3-none-any.whl (37 kB)
+Collecting astroid<=3.2.0-dev0,>=3.1.0
+  Downloading astroid-3.1.0-py3-none-any.whl (275 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 275.6/275.6 kB 1.2 MB/s eta 0:00:00
+Collecting dill>=0.2
+  Downloading dill-0.3.8-py3-none-any.whl (116 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 116.3/116.3 kB 1.3 MB/s eta 0:00:00
+Collecting exceptiongroup>=1.0.0rc8
+  Downloading exceptiongroup-1.2.0-py3-none-any.whl (16 kB)
+Collecting iniconfig
+  Downloading iniconfig-2.0.0-py3-none-any.whl (5.9 kB)
+Collecting pluggy<2.0,>=1.3.0
+  Downloading pluggy-1.4.0-py3-none-any.whl (20 kB)
+Collecting coverage[toml]>=5.2.1
+  Downloading coverage-7.4.3-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (234 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 234.1/234.1 kB 1.2 MB/s eta 0:00:00
+Collecting execnet>=1.1
+  Downloading execnet-2.0.2-py3-none-any.whl (37 kB)
+Collecting sphinxcontrib-applehelp
+  Downloading sphinxcontrib_applehelp-1.0.8-py3-none-any.whl (120 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 120.0/120.0 kB 1.3 MB/s eta 0:00:00
+Collecting imagesize>=1.3
+  Downloading imagesize-1.4.1-py2.py3-none-any.whl (8.8 kB)
+Collecting sphinxcontrib-qthelp
+  Downloading sphinxcontrib_qthelp-1.0.7-py3-none-any.whl (89 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 89.4/89.4 kB 1.3 MB/s eta 0:00:00
+Collecting sphinxcontrib-htmlhelp>=2.0.0
+  Downloading sphinxcontrib_htmlhelp-2.0.5-py3-none-any.whl (99 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 99.2/99.2 kB 1.3 MB/s eta 0:00:00
+Collecting sphinxcontrib-serializinghtml>=1.1.9
+  Downloading sphinxcontrib_serializinghtml-1.1.10-py3-none-any.whl (92 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 92.7/92.7 kB 1.3 MB/s eta 0:00:00
+Collecting alabaster<0.8,>=0.7
+  Downloading alabaster-0.7.16-py3-none-any.whl (13 kB)
+Collecting sphinxcontrib-jsmath
+  Downloading sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl (5.1 kB)
+Collecting sphinxcontrib-devhelp
+  Downloading sphinxcontrib_devhelp-1.0.6-py3-none-any.whl (83 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 83.5/83.5 kB 1.3 MB/s eta 0:00:00
+Collecting babel>=2.9
+  Downloading Babel-2.14.0-py3-none-any.whl (11.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.0/11.0 MB 1.2 MB/s eta 0:00:00
+Collecting snowballstemmer>=2.0
+  Downloading snowballstemmer-2.2.0-py2.py3-none-any.whl (93 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 93.0/93.0 kB 1.4 MB/s eta 0:00:00
+Collecting sphinx-panels
+  Downloading sphinx_panels-0.5.2-py3-none-any.whl (87 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.8/87.8 kB 1.3 MB/s eta 0:00:00
+  Downloading sphinx_panels-0.5.1-py3-none-any.whl (87 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.7/87.7 kB 1.3 MB/s eta 0:00:00
+  Downloading sphinx_panels-0.5.0-py3-none-any.whl (87 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 87.9/87.9 kB 1.3 MB/s eta 0:00:00
+  Downloading sphinx_panels-0.4.1-py3-none-any.whl (74 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 74.3/74.3 kB 1.3 MB/s eta 0:00:00
+Collecting frozenlist>=1.1.1
+  Downloading frozenlist-1.4.1-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (239 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 239.5/239.5 kB 1.2 MB/s eta 0:00:00
+Collecting multidict<7.0,>=4.5
+  Downloading multidict-6.0.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (124 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 124.3/124.3 kB 1.3 MB/s eta 0:00:00
+Collecting aiosignal>=1.1.2
+  Downloading aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+Collecting attrs>=17.3.0
+  Downloading attrs-23.2.0-py3-none-any.whl (60 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.8/60.8 kB 1.4 MB/s eta 0:00:00
+Collecting yarl<2.0,>=1.0
+  Downloading yarl-1.9.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (301 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 301.6/301.6 kB 1.2 MB/s eta 0:00:00
+Collecting async-timeout<5.0,>=4.0
+  Downloading async_timeout-4.0.3-py3-none-any.whl (5.7 kB)
+Collecting rsa<5,>=3.1.4
+  Downloading rsa-4.9-py3-none-any.whl (34 kB)
+Collecting pyasn1-modules>=0.2.1
+  Downloading pyasn1_modules-0.3.0-py2.py3-none-any.whl (181 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 181.3/181.3 kB 1.2 MB/s eta 0:00:00
+Collecting cachetools<6.0,>=2.0.0
+  Downloading cachetools-5.3.3-py3-none-any.whl (9.3 kB)
+Collecting mdurl~=0.1
+  Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Collecting pydantic-core==2.16.3
+  Downloading pydantic_core-2.16.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 1.2 MB/s eta 0:00:00
+Collecting annotated-types>=0.4.0
+  Downloading annotated_types-0.6.0-py3-none-any.whl (12 kB)
+Collecting idna<4,>=2.5
+  Downloading idna-3.6-py3-none-any.whl (61 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.6/61.6 kB 1.3 MB/s eta 0:00:00
+Collecting charset-normalizer<4,>=2
+  Downloading charset_normalizer-3.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (142 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 142.1/142.1 kB 1.2 MB/s eta 0:00:00
+Collecting soupsieve>1.2
+  Downloading soupsieve-2.5-py3-none-any.whl (36 kB)
+Collecting pyasn1<0.6.0,>=0.4.6
+  Downloading pyasn1-0.5.1-py2.py3-none-any.whl (84 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 84.9/84.9 kB 1.3 MB/s eta 0:00:00
+Building wheels for collected packages: neo4j
+  Building wheel for neo4j (pyproject.toml): started
+  Building wheel for neo4j (pyproject.toml): finished with status 'done'
+  Created wheel for neo4j: filename=neo4j-5.10.0-py3-none-any.whl size=259293 sha256=e05aef15170f540931ebfb8fde921857de584b082d511de3e7afb412e6a39a6f
+  Stored in directory: /tmp/pip-ephem-wheel-cache-_niye5be/wheels/14/9e/82/738a3a6462074384260415f8f7c3834e9309372ff627f04a2d
+Successfully built neo4j
+Installing collected packages: vineyard-bdist, sortedcontainers, snowballstemmer, pytz, mccabe, makefun, etcd-distro, aenum, wheel, websocket-client, urllib3, uc-micro-py, tzdata, types-protobuf, tqdm, tomlkit, tomli, sphinxcontrib-serializinghtml, sphinxcontrib-qthelp, sphinxcontrib-jsmath, sphinxcontrib-htmlhelp, sphinxcontrib-devhelp, sphinxcontrib-applehelp, soupsieve, six, setuptools, PyYAML, pysimdjson, Pygments, pyflakes, pydantic-core, pycodestyle, pyasn1, psutil, protobuf, pluggy, platformdirs, pathspec, packaging, orjson, oauthlib, numpy, networkx, nest_asyncio, neo4j, mypy-extensions, multidict, msgpack, mdurl, isort, iniconfig, imagesize, idna, grpcio, frozenlist, execnet, exceptiongroup, docutils, docstring-parser, dill, Cython, coverage, click, charset-normalizer, certifi, cachetools, babel, attrs, async-timeout, astroid, argcomplete, annotated-types, alabaster, yarl, treelib, simple-parsing, rsa, requests, python-dateutil, pytest, pylint, pydantic, pyasn1-modules, pyarrow, mypy-protobuf, markdown-it-py, linkify-it-py, lazy-import, isodate, grpcio-tools, flake8, black, beautifulsoup4, aiosignal, sphinx, rich, requests-oauthlib, pytest-xdist, pytest-timeout, pytest-cov, pandas, mdit-py-plugins, graphscope-flex, google-auth, aiohttp, vineyard, sphinxext-opengraph, sphinxemoji, sphinx-panels, sphinx-copybutton, sphinx-basic-ng, myst-parser, kubernetes, gremlinpython, breathe, furo
+  Attempting uninstall: networkx
+    Found existing installation: networkx 3.0
+    Uninstalling networkx-3.0:
+      Successfully uninstalled networkx-3.0
+  DEPRECATION: lazy-import is being installed using the legacy 'setup.py install' method, because it does not have a 'pyproject.toml' and the 'wheel' package is not installed. pip 23.1 will enforce this behaviour change. A possible replacement is to enable the '--use-pep517' option. Discussion can be found at https://github.com/pypa/pip/issues/8559
+  Running setup.py install for lazy-import: started
+  Running setup.py install for lazy-import: finished with status 'done'
+Successfully installed Cython-3.0.8 PyYAML-6.0.1 Pygments-2.17.2 aenum-3.1.15 aiohttp-3.9.3 aiosignal-1.3.1 alabaster-0.7.16 annotated-types-0.6.0 argcomplete-3.2.2 astroid-3.1.0 async-timeout-4.0.3 attrs-23.2.0 babel-2.14.0 beautifulsoup4-4.12.3 black-24.2.0 breathe-4.35.0 cachetools-5.3.3 certifi-2024.2.2 charset-normalizer-3.3.2 click-8.1.7 coverage-7.4.3 dill-0.3.8 docstring-parser-0.15 docutils-0.20.1 etcd-distro-3.5.1 exceptiongroup-1.2.0 execnet-2.0.2 flake8-4.0.1 frozenlist-1.4.1 furo-2024.1.29 google-auth-2.28.1 graphscope-flex-0.27.0 gremlinpython-3.7.0 grpcio-1.62.0 grpcio-tools-1.62.0 idna-3.6 imagesize-1.4.1 iniconfig-2.0.0 isodate-0.6.1 isort-5.10.1 kubernetes-29.0.0 lazy-import-0.2.2 linkify-it-py-2.0.3 makefun-1.15.2 markdown-it-py-3.0.0 mccabe-0.6.1 mdit-py-plugins-0.4.0 mdurl-0.1.2 msgpack-1.0.8 multidict-6.0.5 mypy-extensions-1.0.0 mypy-protobuf-3.5.0 myst-parser-2.0.0 neo4j-5.10.0 nest_asyncio-1.6.0 networkx-2.8 numpy-1.26.4 oauthlib-3.2.2 orjson-3.9.15 packaging-23.2 pandas-2.0.3 pathspec-0.12.1 platformdirs-4.2.0 pluggy-1.4.0 protobuf-4.25.3 psutil-5.9.8 pyarrow-15.0.0 pyasn1-0.5.1 pyasn1-modules-0.3.0 pycodestyle-2.8.0 pydantic-2.6.3 pydantic-core-2.16.3 pyflakes-2.4.0 pylint-3.1.0 pysimdjson-5.0.2 pytest-8.0.2 pytest-cov-4.1.0 pytest-timeout-2.2.0 pytest-xdist-3.5.0 python-dateutil-2.9.0.post0 pytz-2024.1 requests-2.31.0 requests-oauthlib-1.3.1 rich-13.7.1 rsa-4.9 setuptools-65.7.0 simple-parsing-0.1.5 six-1.16.0 snowballstemmer-2.2.0 sortedcontainers-2.4.0 soupsieve-2.5 sphinx-7.2.6 sphinx-basic-ng-1.0.0b2 sphinx-copybutton-0.5.2 sphinx-panels-0.4.1 sphinxcontrib-applehelp-1.0.8 sphinxcontrib-devhelp-1.0.6 sphinxcontrib-htmlhelp-2.0.5 sphinxcontrib-jsmath-1.0.1 sphinxcontrib-qthelp-1.0.7 sphinxcontrib-serializinghtml-1.1.10 sphinxemoji-0.3.1 sphinxext-opengraph-0.9.1 tomli-2.0.1 tomlkit-0.12.4 tqdm-4.66.2 treelib-1.7.0 types-protobuf-4.24.0.20240302 tzdata-2024.1 uc-micro-py-1.0.3 urllib3-2.0.7 vineyard-0.21.3 vineyard-bdist-0.21.3 websocket-client-1.7.0 wheel-0.42.0 yarl-1.9.4
+
+[notice] A new release of pip is available: 23.0.1 -> 24.0
+[notice] To update, run: python3 -m pip install --upgrade pip
+/home/tdops/.local/lib/python3.10/site-packages/setuptools/installer.py:27: SetuptoolsDeprecationWarning: setuptools.installer is deprecated. Requirements should be satisfied by a PEP 517 installer.
+  warnings.warn(
+/data/gs/gs2/GraphScope/python/.eggs/setuptools_scm-7.1.0-py3.10.egg/setuptools_scm/version.py:221: UserWarning: meta invoked without explicit configuration, will use defaults where required.
+  warnings.warn(
+running build_ext
+running build_proto
+TypeError: bases must be types
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/tdops/anaconda3/bin/protoc-gen-mypy", line 5, in <module>
+    from mypy_protobuf.main import main
+  File "/home/tdops/anaconda3/lib/python3.7/site-packages/mypy_protobuf/main.py", line 21, in <module>
+    import google.protobuf.descriptor_pb2 as d
+  File "/home/tdops/anaconda3/lib/python3.7/site-packages/google/protobuf/descriptor_pb2.py", line 5, in <module>
+    from google.protobuf import descriptor as _descriptor
+  File "/home/tdops/anaconda3/lib/python3.7/site-packages/google/protobuf/descriptor.py", line 40, in <module>
+    from google.protobuf.internal import api_implementation
+  File "/home/tdops/anaconda3/lib/python3.7/site-packages/google/protobuf/internal/api_implementation.py", line 104, in <module>
+    from google.protobuf.pyext import _message
+  File "<frozen importlib._bootstrap>", line 980, in _find_and_load
+SystemError: <class '_frozen_importlib._ModuleLockManager'> returned a result with an error set
+--mypy_out: protoc-gen-mypy: Plugin failed with status code 1.
+Generating python proto to: /data/gs/gs2/GraphScope/python/graphscope/proto
+Traceback (most recent call last):
+  File "/data/gs/gs2/GraphScope/python/../proto/proto_generator.py", line 137, in <module>
+    python_out(relative_dir, output_dir)
+  File "/data/gs/gs2/GraphScope/python/../proto/proto_generator.py", line 68, in python_out
+    subprocess.check_call(
+  File "/usr/local/python3.10/lib/python3.10/subprocess.py", line 369, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['/usr/bin/python3', '-m', 'grpc_tools.protoc', '-I.', '--python_out=/data/gs/gs2/GraphScope/python/graphscope/proto', '--mypy_out=/data/gs/gs2/GraphScope/python/graphscope/proto', './attr_value.proto']' returned non-zero exit status 1.
+/usr/bin/python3 /data/gs/gs2/GraphScope/python/../proto/proto_generator.py /data/gs/gs2/GraphScope/python/graphscope/proto --python
+Traceback (most recent call last):
+  File "/data/gs/gs2/GraphScope/python/setup.py", line 416, in <module>
+    setup(
+  File "/home/tdops/.local/lib/python3.10/site-packages/setuptools/__init__.py", line 87, in setup
+    return distutils.core.setup(**attrs)
+  File "/home/tdops/.local/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 185, in setup
+    return run_commands(dist)
+  File "/home/tdops/.local/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 201, in run_commands
+    dist.run_commands()
+  File "/home/tdops/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 969, in run_commands
+    self.run_command(cmd)
+  File "/home/tdops/.local/lib/python3.10/site-packages/setuptools/dist.py", line 1208, in run_command
+    super().run_command(command)
+  File "/home/tdops/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 988, in run_command
+    cmd_obj.run()
+  File "/data/gs/gs2/GraphScope/python/setup.py", line 179, in run
+    self.run_command("build_proto")
+  File "/home/tdops/.local/lib/python3.10/site-packages/setuptools/_distutils/cmd.py", line 318, in run_command
+    self.distribution.run_command(command)
+  File "/home/tdops/.local/lib/python3.10/site-packages/setuptools/dist.py", line 1208, in run_command
+    super().run_command(command)
+  File "/home/tdops/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 988, in run_command
+    cmd_obj.run()
+  File "/data/gs/gs2/GraphScope/python/setup.py", line 89, in run
+    subprocess.check_call(
+  File "/usr/local/python3.10/lib/python3.10/subprocess.py", line 369, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['/usr/bin/python3', '/data/gs/gs2/GraphScope/python/../proto/proto_generator.py', '/data/gs/gs2/GraphScope/python/graphscope/proto', '--python']' returned non-zero exit status 1.
+make: *** [client] 错误 1
