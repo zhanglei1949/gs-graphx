@@ -25,6 +25,7 @@ import org.apache.spark.graphx.grape.GrapeGraphImpl
 import org.apache.spark.internal.Logging
 import org.apache.spark.scheduler.cluster.ExecutorInfoHelper
 import org.apache.spark.sql.GSSparkSession
+import org.slf4j.{Logger, LoggerFactory}
 
 import java.util.concurrent.atomic.AtomicInteger
 import scala.collection.mutable
@@ -39,13 +40,6 @@ class GSClientWrapper(
     val sharedMemSize: String
 ) extends Logging {
 
-    try {
-    log.info("load grape-jni start")
-    System.loadLibrary("grape-jni")
-    log.info("load grape-jni end")
-  } catch {
-    case e: Exception => e.printStackTrace();
-  }
   val graph2GraphName: mutable.HashMap[GrapeGraphImpl[_, _], String] =
     new mutable.HashMap[GrapeGraphImpl[_, _], String]()
   val executorInfo: mutable.HashMap[String, ArrayBuffer[String]] = ExecutorInfoHelper.getExecutorsHost2Id(sc)
@@ -183,6 +177,17 @@ object GSClientWrapper {
   val SAFE_WORD                   = "Spark-GraphScope-OK"
   val graphNameCounter            = new AtomicInteger(0)
   val VINEYARD_DEFAULT_SHARED_MEM = "10Gi"
+    val log: Logger =
+    LoggerFactory.getLogger(classOf[GSClientWrapper].toString)
+
+      // log libgrape-jni.so
+    try {
+      log.info("load grape-jni start")
+      System.loadLibrary("grape-jni")
+      log.info("load grape-jni end")
+    } catch {
+      case e: Exception => e.printStackTrace();
+    }
 
   def arr2PythonArrStr(arr: Array[String]): String = {
     if (arr.length == 0) {
@@ -205,7 +210,10 @@ object GSClientWrapper {
       .create()
     val ffiByteString = FFITypeFactory.newByteString()
     ffiByteString.copyFrom(socket)
-    client.connect(ffiByteString)
+    val res = client.connect(ffiByteString)
+    if (!res.ok()) {
+      throw new IllegalStateException("Failed to connect to vineyard server")
+    }
     client
   }
 
