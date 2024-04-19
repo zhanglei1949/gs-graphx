@@ -41,13 +41,13 @@ object BFSTest extends Logging {
       GraphLoader.edgeListFile(sc, efile, canonicalOrientation = false, partNum)
     // Initialize the graph such that all vertices except the root have distance infinity.
     val initialGraph = graph.mapVertices((id, _) => {
-    try {
-      log.info("load grape-jni start")
-      System.loadLibrary("grape-jni")
-      log.info("load grape-jni end")
-    } catch {
-      case e: Exception => e.printStackTrace();
-    }
+    // try {
+    //   log.info("load grape-jni start")
+    //   System.loadLibrary("grape-jni")
+    //   log.info("load grape-jni end")
+    // } catch {
+    //   case e: Exception => e.printStackTrace();
+    // }
       if (id == sourceId) 0 else Int.MaxValue})
     val sssp = initialGraph.pregel(Int.MaxValue, 100)(
       (id, dist, newDist) => {

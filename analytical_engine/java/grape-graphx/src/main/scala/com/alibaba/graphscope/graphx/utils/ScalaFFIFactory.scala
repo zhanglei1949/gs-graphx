@@ -36,13 +36,13 @@ import java.util.HashMap
 import scala.reflect.ClassTag
 
 object ScalaFFIFactory extends Logging {
-  try {
-    log.info("load grape-jni start")
-    System.loadLibrary("grape-jni")
-    log.info("load grape-jni end")
-  } catch {
-    case e: Exception => e.printStackTrace();
-  }
+  // try {
+  //   log.info("load grape-jni start")
+  //   System.loadLibrary("grape-jni")
+  //   log.info("load grape-jni end")
+  // } catch {
+  //   case e: Exception => e.printStackTrace();
+  // }
   val clientFactory: VineyardClient.Factory = FFITypeFactory
     .getFactory(classOf[VineyardClient], "vineyard::Client")
     .asInstanceOf[VineyardClient.Factory]

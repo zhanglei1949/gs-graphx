@@ -181,13 +181,13 @@ object GSClientWrapper {
     LoggerFactory.getLogger(classOf[GSClientWrapper].toString)
 
       // log libgrape-jni.so
-    try {
-      log.info("load grape-jni start")
-      System.loadLibrary("grape-jni")
-      log.info("load grape-jni end")
-    } catch {
-      case e: Exception => e.printStackTrace();
-    }
+    // try {
+    //   log.info("load grape-jni start")
+    //   System.loadLibrary("grape-jni")
+    //   log.info("load grape-jni end")
+    // } catch {
+    //   case e: Exception => e.printStackTrace();
+    // }
 
   def arr2PythonArrStr(arr: Array[String]): String = {
     if (arr.length == 0) {

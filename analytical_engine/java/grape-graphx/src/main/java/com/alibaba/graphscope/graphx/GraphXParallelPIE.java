@@ -300,13 +300,13 @@ public class GraphXParallelPIE<VD, ED, MSG_T> {
 
     public void parallelExecute(
             InterruptibleTriConsumer<Integer, Integer, Integer> function, int limit) {
-        try {
-            logger.info("load grape-jni start");
-            System.loadLibrary("grape-jni");
-            logger.info("load grape-jni end");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     logger.info("load grape-jni start");
+        //     System.loadLibrary("grape-jni");
+        //     logger.info("load grape-jni end");
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
 
         AtomicInteger getter = new AtomicInteger(0);
         CountDownLatch countDownLatch = new CountDownLatch(numCores);

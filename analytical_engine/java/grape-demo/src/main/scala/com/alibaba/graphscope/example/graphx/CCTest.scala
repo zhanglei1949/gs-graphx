@@ -27,13 +27,13 @@ import org.apache.spark.sql.{GSSparkSession, SparkSession}
  */
 object CCTest extends Logging{
   def main(args: Array[String]): Unit = {
-    try {
-      log.info("load grape-jni start")
-      System.loadLibrary("grape-jni")
-      log.info("load grape-jni end")
-    } catch {
-      case e: Exception => e.printStackTrace();
-    }
+    // try {
+    //   log.info("load grape-jni start")
+    //   System.loadLibrary("grape-jni")
+    //   log.info("load grape-jni end")
+    // } catch {
+    //   case e: Exception => e.printStackTrace();
+    // }
 
     // Creates a SparkSession.
     val spark = GSSparkSession
