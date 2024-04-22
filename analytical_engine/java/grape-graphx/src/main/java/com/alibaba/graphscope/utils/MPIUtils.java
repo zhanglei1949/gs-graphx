@@ -47,9 +47,9 @@ public class MPIUtils {
 
         public CommendBuilder() {
             commands = new ArrayList<>();
-            commands.add("sudo");
-            commands.add("-niu");
-            commands.add("tdops");
+            // commands.add("sudo");
+            // commands.add("-niu");
+            // commands.add("tdops");
             commands.add("/bin/bash");
             commands.add(LAUNCH_GRAPHX_SHELL_SCRIPT);
         }
