@@ -141,7 +141,7 @@ public class MPIUtils {
 
     static {
         // 修改成通过spark 传参
-        GRAPHSCOPE_HOME = "/home/tdops/ljq/graphscope/GraphScope/analytical_engine/java";//System.getenv("GRAPHSCOPE_HOME");
+        GRAPHSCOPE_HOME = System.getenv("GRAPHSCOPE_HOME");
         if (GRAPHSCOPE_HOME == null || GRAPHSCOPE_HOME.isEmpty()) {
             throw new IllegalStateException("GRAPHSCOPE_HOME empty");
         }

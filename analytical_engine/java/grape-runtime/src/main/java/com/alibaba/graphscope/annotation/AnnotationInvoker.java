@@ -19,6 +19,7 @@ package com.alibaba.graphscope.annotation;
 import static com.alibaba.graphscope.utils.CppClassName.ARROW_FRAGMENT;
 import static com.alibaba.graphscope.utils.CppClassName.CPP_ARROW_PROJECTED_FRAGMENT;
 import static com.alibaba.graphscope.utils.CppClassName.DOUBLE_MSG;
+import static com.alibaba.graphscope.utils.CppClassName.INT_MSG;
 import static com.alibaba.graphscope.utils.CppClassName.GS_VERTEX_ARRAY;
 import static com.alibaba.graphscope.utils.CppClassName.LONG_MSG;
 import static com.alibaba.graphscope.utils.CppHeaderName.ARROW_FRAGMENT_GROUP_H;
@@ -1634,6 +1635,27 @@ import com.alibaba.fastffi.FFIGenBatch;
                                                                         + "<Long,Long,Double,Long>",
                                                                 "com.alibaba.graphscope.parallel.message.DoubleMsg",
                                                                 "com.alibaba.graphscope.runtime.UnusedImpl.DoubleIntegerDouble"
+                                                        }),
+                                                @CXXTemplate(
+                                                        cxx = {
+                                                                "int64_t",
+                                                                "uint64_t",
+                                                                "int32_t",
+                                                                "int32_t",
+                                                                CPP_ARROW_PROJECTED_FRAGMENT
+                                                                        + "<int64_t,uint64_t,int32_t,int32_t>",
+                                                                INT_MSG,
+                                                                "any"
+                                                        },
+                                                        java = {
+                                                                "Long",
+                                                                "Long",
+                                                                "Integer",
+                                                                "Integer",
+                                                                JAVA_ARROW_PROJECTED_FRAGMENT
+                                                                        + "<Long,Long,Integer,Integer>",
+                                                                "com.alibaba.graphscope.parallel.message.IntMsg",
+                                                                "com.alibaba.graphscope.runtime.UnusedImpl.IntegerIntegerInteger"
                                                         }),
                                         })
                         }),

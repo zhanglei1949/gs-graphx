@@ -19,6 +19,7 @@ package com.alibaba.graphscope.graphx
 import com.alibaba.fastffi.FFITypeFactory
 import com.alibaba.graphscope.graphx.GSClientWrapper._
 import com.alibaba.graphscope.graphx.utils.GrapeUtils
+import com.alibaba.graphscope.graphx.utils.ScalaFFIFactory
 import com.alibaba.graphscope.utils.PythonInterpreter
 import org.apache.spark.SparkContext
 import org.apache.spark.graphx.grape.GrapeGraphImpl
@@ -204,10 +205,11 @@ object GSClientWrapper {
   }
 
   def createVineyardClient(socket: String): VineyardClient = {
-    val client = FFITypeFactory
-      .getFactory(classOf[VineyardClient])
-      .asInstanceOf[VineyardClient.Factory]
-      .create()
+  //  val client = FFITypeFactory
+   //   .getFactory(classOf[VineyardClient])
+   //   .asInstanceOf[VineyardClient.Factory]
+   //   .create()
+    val client = ScalaFFIFactory.newVineyardClient()
     val ffiByteString = FFITypeFactory.newByteString()
     ffiByteString.copyFrom(socket)
     val res = client.connect(ffiByteString)
